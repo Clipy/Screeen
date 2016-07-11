@@ -10,6 +10,7 @@
 		FAD9DB971D33246400117636 /* Screeen.h in Headers */ = {isa = PBXBuildFile; fileRef = FAD9DB961D33246400117636 /* Screeen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAD9DB9E1D33246400117636 /* Screeen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD9DB931D33246400117636 /* Screeen.framework */; };
 		FAD9DBA31D33246400117636 /* ScreeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9DBA21D33246400117636 /* ScreeenTests.swift */; };
+		FAD9DBD51D33FB0B00117636 /* ScreenShotObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9DBD41D33FB0B00117636 /* ScreenShotObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		FAD9DB9D1D33246400117636 /* ScreeenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreeenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD9DBA21D33246400117636 /* ScreeenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreeenTests.swift; sourceTree = "<group>"; };
 		FAD9DBA41D33246400117636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD9DBD41D33FB0B00117636 /* ScreenShotObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenShotObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				FAD9DB961D33246400117636 /* Screeen.h */,
 				FAD9DB981D33246400117636 /* Info.plist */,
+				FAD9DBD41D33FB0B00117636 /* ScreenShotObserver.swift */,
 			);
 			path = Screeen;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD9DBD51D33FB0B00117636 /* ScreenShotObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +311,7 @@
 		FAD9DBA81D33246400117636 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -319,12 +324,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clipy-app.Screeen";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FAD9DBA91D33246400117636 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -381,6 +388,7 @@
 				FAD9DBA91D33246400117636 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAD9DBAA1D33246400117636 /* Build configuration list for PBXNativeTarget "ScreeenTests" */ = {
 			isa = XCConfigurationList;
@@ -389,6 +397,7 @@
 				FAD9DBAC1D33246400117636 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
