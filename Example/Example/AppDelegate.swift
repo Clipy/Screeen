@@ -7,15 +7,17 @@
 //
 
 import Cocoa
+import Screeen
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    private let observer = ScreenShotObserver()
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        observer.delegate = self
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -23,5 +25,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: ScreenShotObserverDelegate {
+    func screenShotObserver(observer: ScreenShotObserver, addedItem item: NSMetadataItem) {
+        print("added item == \(item)")
+    }
+
+    func screenShotObserver(observer: ScreenShotObserver, updatedItem item: NSMetadataItem) {
+        print("updated item == \(item)")
+    }
+
+    func screenShotObserver(observer: ScreenShotObserver, removedItem item: NSMetadataItem) {
+        print("removed item == \(item)")
+    }
 }
 
