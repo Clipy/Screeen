@@ -9,7 +9,7 @@ Observe user screen shot event and image in macOS.
 platform :osx, '10.9'
 use_frameworks!
 
-pod 'Screeen', :git => 'https://github.com/Clipy/Screeen.git'
+pod 'Screeen'
 ```
 
 ## Example
