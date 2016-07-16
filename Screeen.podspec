@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Screeen"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Observe user screen shot event in macOS."
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage     = "https://github.com/Clipy/Screeen"
