@@ -7,6 +7,6 @@ Pod::Spec.new do |s|
   s.author       = { "Econa77" => "f.s.1992.ip@gmail.com" }
   s.source       = { :git => "https://github.com/Clipy/Screeen.git", :tag => "v#{s.version}" }
   s.platform     = :osx, '10.9'
-  s.source_files = 'Lib/Screen/*.swift'
+  s.source_files = 'Lib/Screeen/*.swift'
   s.frameworks   = 'Cocoa'
 end
