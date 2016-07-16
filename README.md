@@ -1,6 +1,8 @@
 # Screeen
 [![Release version](https://img.shields.io/github/release/Clipy/Screeen.svg)](https://github.com/Clipy/Screeen/releases/latest)
 [![License: MIT](https://img.shields.io/github/license/Clipy/Screeen.svg)](https://github.com/Clipy/Screeen/blob/master/LICENSE)
+[![Version](https://img.shields.io/cocoapods/v/Screeen.svg)](http://cocoadocs.org/docsets/Screeen)
+[![Platform](https://img.shields.io/cocoapods/p/Screeen.svg)](http://cocoadocs.org/docsets/Screeen)
 
 Observe user screen shot event and image in macOS.
 
