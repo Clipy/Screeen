@@ -12,31 +12,30 @@ import Screeen
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    // MARK: - Properties
     @IBOutlet weak var window: NSWindow!
-    private let observer = ScreenShotObserver()
+    fileprivate let observer = ScreenShotObserver()
 
-
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    // MARK: - NSApplication Delegate
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         observer.delegate = self
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
-    }
-
+    func applicationWillTerminate(_ aNotification: Notification) {}
 
 }
 
+// MARK: - ScreenShotObserver Delegate
 extension AppDelegate: ScreenShotObserverDelegate {
-    func screenShotObserver(observer: ScreenShotObserver, addedItem item: NSMetadataItem) {
+    func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem) {
         print("added item == \(item)")
     }
 
-    func screenShotObserver(observer: ScreenShotObserver, updatedItem item: NSMetadataItem) {
+    func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem) {
         print("updated item == \(item)")
     }
 
-    func screenShotObserver(observer: ScreenShotObserver, removedItem item: NSMetadataItem) {
+    func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem) {
         print("removed item == \(item)")
     }
 }
