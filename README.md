@@ -13,11 +13,17 @@ Observe user screen shot event and image in macOS.
 - Swift 3.0+
 
 ## Usage
+### CocoaPods
 ```
 platform :osx, '10.9'
 use_frameworks!
 
 pod 'Screeen'
+```
+
+### Carthage
+```
+github "Clipy/Screeen"
 ```
 
 ## Example
