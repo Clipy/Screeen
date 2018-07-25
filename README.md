@@ -15,9 +15,6 @@ Observe user screen shot event and image in macOS.
 ## Usage
 ### CocoaPods
 ```
-platform :osx, '10.9'
-use_frameworks!
-
 pod 'Screeen'
 ```
 
@@ -27,12 +24,12 @@ github "Clipy/Screeen"
 ```
 
 ## Example
-```
+```swift
 let observer = ScreenShotObserver()
 observer.delegate = self
 ```
 
-```
+```swift
 func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem) {
     print("added item == \(item)")
 }
@@ -47,7 +44,7 @@ func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMeta
 ```
 
 Change observing status
-```
+```swift
 observer.isEnabled = false // Stop observing
 observer.isEnabled = true  // Restart observing
 ```
