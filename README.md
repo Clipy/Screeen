@@ -8,9 +8,9 @@
 Observe user screen shot event and image in macOS.
 
 ## Requirements
-- macOS 10.9+
-- Xcode 9.0+
-- Swift 4.0+
+- macOS 10.10+
+- Xcode 9.4+
+- Swift 4.1+
 
 ## Usage
 ### CocoaPods
