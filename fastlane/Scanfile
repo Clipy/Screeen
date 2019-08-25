@@ -1,0 +1,4 @@
+workspace("Screeen.xcworkspace")
+scheme("Screeen")
+clean(true)
+skip_build(true)
