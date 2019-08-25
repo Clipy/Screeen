@@ -147,7 +147,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = "Shunsuke Furubayashi";
+				ORGANIZATIONNAME = "Clipy Project";
 				TargetAttributes = {
 					FAD9DB921D33246400117636 = {
 						CreatedOnToolsVersion = 7.3.1;
