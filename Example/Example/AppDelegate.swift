@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var window: NSWindow!
-    fileprivate let observer = ScreenShotObserver()
+    private let observer = ScreenShotObserver()
 
     // MARK: - NSApplication Delegate
     func applicationDidFinishLaunching(_ aNotification: Notification) {

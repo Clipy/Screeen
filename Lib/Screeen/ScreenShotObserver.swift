@@ -10,10 +10,16 @@
 
 import Foundation
 
-@objc public protocol ScreenShotObserverDelegate: class {
-    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem)
-    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem)
-    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem)
+public protocol ScreenShotObserverDelegate: AnyObject {
+    func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem)
+    func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem)
+    func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem)
+}
+
+public extension ScreenShotObserverDelegate {
+    func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem) {}
+    func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem) {}
+    func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem) {}
 }
 
 public final class ScreenShotObserver: NSObject {
@@ -22,17 +28,16 @@ public final class ScreenShotObserver: NSObject {
     public weak var delegate: ScreenShotObserverDelegate?
     public var isEnabled = true
 
-    fileprivate let query = NSMetadataQuery()
+    private let query = NSMetadataQuery()
 
     // MARK: - Initialize
     override public init() {
         super.init()
         // Observe update notification
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(ScreenShotObserver.updateQuery(_:)),
-                         name: NSNotification.Name.NSMetadataQueryDidUpdate,
-                         object: query)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(ScreenShotObserver.updateQuery(_:)),
+                                               name: NSNotification.Name.NSMetadataQueryDidUpdate,
+                                               object: query)
         // Query setting
         query.delegate = self
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")
@@ -49,11 +54,11 @@ public final class ScreenShotObserver: NSObject {
         if !isEnabled { return }
 
         if let items = notification.userInfo?[kMDQueryUpdateAddedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver?(self, addedItem: $0) }
+            items.forEach { delegate?.screenShotObserver(self, addedItem: $0) }
         } else if let items = notification.userInfo?[kMDQueryUpdateChangedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver?(self, updatedItem: $0) }
+            items.forEach { delegate?.screenShotObserver(self, updatedItem: $0) }
         } else if let items = notification.userInfo?[kMDQueryUpdateRemovedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver?(self, removedItem: $0) }
+            items.forEach { delegate?.screenShotObserver(self, removedItem: $0) }
         }
     }
 }
