@@ -51,7 +51,9 @@ public final class ScreenShotObserver: NSObject {
                                        object: query)
         // Query setting
         query.delegate = self
-        query.searchScopes = searchDirectoryPaths
+        if !searchDirectoryPaths.isEmpty {
+            query.searchScopes = searchDirectoryPaths
+        }
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")
         query.start()
     }
