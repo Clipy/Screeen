@@ -55,13 +55,21 @@ public final class ScreenShotObserver: NSObject {
             query.searchScopes = searchDirectoryPaths
         }
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")
-        query.start()
     }
 
     deinit {
         notificationCenter.removeObserver(self)
         query.stop()
         query.delegate = nil
+    }
+
+    // MARK: - Start
+    public func start() {
+        query.start()
+    }
+
+    public func stop() {
+        query.stop()
     }
 
     // MARK: - Notification

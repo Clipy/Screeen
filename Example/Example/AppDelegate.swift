@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - NSApplication Delegate
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         observer.delegate = self
+        observer.start()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {}
