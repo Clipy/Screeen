@@ -71,7 +71,6 @@ if #available(macOS 10.15, *) {
 } else {
     observer = ScreenShotObserver(searchDirectoryPaths: [])
 }
-observer.start()
 ```
 
 ### Contributing
