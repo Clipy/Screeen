@@ -22,6 +22,7 @@ github "Clipy/Screeen"
 ```swift
 let observer = ScreenShotObserver()
 observer.delegate = self
+observer.start()
 ```
 
 ```swift
@@ -42,6 +43,34 @@ Change observing status
 ```swift
 observer.isEnabled = false // Stop observing
 observer.isEnabled = true  // Restart observing
+```
+
+## Security features of macOS 10.15 or higher
+Security features have been enhanced since mac10.15 Catalina, and screenshot monitoring must be granted permission. The monitoring target can be specified for each directory, and the desktop directory is specified by default.　
+
+When call `start()` for the first time, a permission alert will be displayed and monitoring will start when allow it.
+
+### Desktop directory monitoring (default)
+```
+let observer = ScreenShotObserver()
+```
+
+### Desktop and Picture directories monitoring
+```
+let desktopPath = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true).first
+let picturePath = NSSearchPathForDirectoriesInDomains(.pictureDirectory, .userDomainMask, true).first
+let directoryPaths = [desktopPath, picturePath].compactMap { $0 }
+let observer = ScreenShotObserver(searchDirectoryPaths: directoryPaths)
+```
+
+### Monitoring all screenshots on macOS 10.14 or earlier
+```
+let observer: ScreenShotObserver
+if #available(macOS 10.15, *) {
+    observer = ScreenShotObserver()
+} else {
+    observer = ScreenShotObserver(searchDirectoryPaths: [])
+}
 ```
 
 ### Contributing
