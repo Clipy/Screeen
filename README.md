@@ -58,7 +58,7 @@ let observer = ScreenShotObserver()
 ### Desktop and Picture directories monitoring
 ```
 let desktopPath = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true).first
-let picturePath = NSSearchPathForDirectoriesInDomains(.pictureDirectory, .userDomainMask, true).first
+let picturePath = NSSearchPathForDirectoriesInDomains(.picturesDirectory, .userDomainMask, true).first
 let directoryPaths = [desktopPath, picturePath].compactMap { $0 }
 let observer = ScreenShotObserver(searchDirectoryPaths: directoryPaths)
 ```
