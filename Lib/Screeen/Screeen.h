@@ -1,9 +1,11 @@
 //
 //  Screeen.h
-//  Screeen
 //
-//  Created by 古林俊佑 on 2016/07/11.
-//  Copyright © 2016年 Shunsuke Furubayashi. All rights reserved.
+//  Screeen
+//  GitHub: https://github.com/clipy
+//  HP: https://clipy-app.com
+//
+//  Copyright © 2015-2020 Clipy Project.
 //
 
 #import <Cocoa/Cocoa.h>
