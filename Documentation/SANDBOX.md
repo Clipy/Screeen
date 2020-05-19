@@ -8,7 +8,6 @@ See the image below to see the directory where reading can be configured.
 ## User Selected File
 In order to monitor directories other than the above, you need to set `Read Only` to `User Selected File` and implement the following.
 
-
 ```
 func selectObserveDirectoryAndSaveBookmark() {
     // ref: https://stackoverflow.com/questions/12153504/accessing-the-desktop-in-a-sandboxed-app
