@@ -55,6 +55,7 @@ When call `start()` for the first time, a permission alert will be displayed and
 ### Desktop directory monitoring (default)
 ```
 let observer = ScreenShotObserver()
+observer.start()
 ```
 
 ### Desktop and Picture directories monitoring
@@ -63,6 +64,7 @@ let desktopPath = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDo
 let picturePath = NSSearchPathForDirectoriesInDomains(.picturesDirectory, .userDomainMask, true).first
 let directoryPaths = [desktopPath, picturePath].compactMap { $0 }
 let observer = ScreenShotObserver(searchDirectoryPaths: directoryPaths)
+observer.start()
 ```
 
 ### Monitoring all screenshots on macOS 10.14 or earlier
@@ -73,11 +75,9 @@ if #available(macOS 10.15, *) {
 } else {
     observer = ScreenShotObserver(searchDirectoryPaths: [])
 }
+observer.start()
 ```
 
-### Contributing
-1. Fork it ( https://github.com/Clipy/Screeen/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+## Sandbox support
+In order to monitor screen shots in a Sandbox enabled application, the user must manually select the directory to be monitored.  
+[See here](./Documentation/SANDBOX.md) for more details on how to implement it.
