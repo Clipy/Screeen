@@ -10,16 +10,11 @@
 
 import Foundation
 
+@objc
 public protocol ScreenShotObserverDelegate: AnyObject {
-    func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem)
-    func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem)
-    func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem)
-}
-
-public extension ScreenShotObserverDelegate {
-    func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem) {}
-    func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem) {}
-    func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem) {}
+    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, addedItem item: NSMetadataItem)
+    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, updatedItem item: NSMetadataItem)
+    @objc optional func screenShotObserver(_ observer: ScreenShotObserver, removedItem item: NSMetadataItem)
 }
 
 public final class ScreenShotObserver: NSObject {
@@ -77,11 +72,11 @@ public final class ScreenShotObserver: NSObject {
         guard isEnabled else { return }
 
         if let items = notification.userInfo?[kMDQueryUpdateAddedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver(self, addedItem: $0) }
+            items.forEach { delegate?.screenShotObserver?(self, addedItem: $0) }
         } else if let items = notification.userInfo?[kMDQueryUpdateChangedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver(self, updatedItem: $0) }
+            items.forEach { delegate?.screenShotObserver?(self, updatedItem: $0) }
         } else if let items = notification.userInfo?[kMDQueryUpdateRemovedItems as String] as? [NSMetadataItem] {
-            items.forEach { delegate?.screenShotObserver(self, removedItem: $0) }
+            items.forEach { delegate?.screenShotObserver?(self, removedItem: $0) }
         }
     }
 }
