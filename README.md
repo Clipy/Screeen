@@ -1,5 +1,5 @@
 # Screeen
-[![Actions Status](https://github.com/Clipy/Screeen/workflows/CI/badge.svg)](https://github.com/Clipy/Screeen/actions)
+[![Actions Status](https://github.com/Clipy/Screeen/workflows/Xcode-Build/badge.svg)](https://github.com/Clipy/Screeen/actions)
 [![Release version](https://img.shields.io/github/release/Clipy/Screeen.svg)](https://github.com/Clipy/Screeen/releases/latest)
 [![License: MIT](https://img.shields.io/github/license/Clipy/Screeen.svg)](https://github.com/Clipy/Screeen/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
