@@ -13,26 +13,68 @@ import XCTest
 
 class ScreeenTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testDefaultSearchDirectoriesIncludeCustomScreenshotLocationAndDesktop() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: "/Users/example/Pictures/Screen Captures",
+            desktopDirectoryPath: "/Users/example/Desktop"
+        )
+
+        XCTAssertEqual(paths, ["/Users/example/Pictures/Screen Captures", "/Users/example/Desktop"])
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testDefaultSearchDirectoriesFallBackToDesktopWithoutCustomLocation() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: nil,
+            desktopDirectoryPath: "/Users/example/Desktop"
+        )
+
+        XCTAssertEqual(paths, ["/Users/example/Desktop"])
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDefaultSearchDirectoriesIgnoreEmptyScreenshotLocation() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: "",
+            desktopDirectoryPath: "/Users/example/Desktop"
+        )
+
+        XCTAssertEqual(paths, ["/Users/example/Desktop"])
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDefaultSearchDirectoriesExpandTildeInScreenshotLocation() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: "~/Pictures/Screen Captures",
+            desktopDirectoryPath: "/Users/example/Desktop"
+        )
+
+        XCTAssertEqual(paths, [NSHomeDirectory() + "/Pictures/Screen Captures", "/Users/example/Desktop"])
+    }
+
+    func testDefaultSearchDirectoriesDoNotDuplicateDesktopAfterExpandingTilde() {
+        let desktop = NSHomeDirectory() + "/Desktop"
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: "~/Desktop",
+            desktopDirectoryPath: desktop
+        )
+
+        XCTAssertEqual(paths, [desktop])
+    }
+
+    func testDefaultSearchDirectoriesUseCustomLocationWhenDesktopIsUnavailable() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: "/Volumes/Screenshots",
+            desktopDirectoryPath: nil
+        )
+
+        XCTAssertEqual(paths, ["/Volumes/Screenshots"])
+    }
+
+    func testDefaultSearchDirectoriesAreEmptyWhenNoLocationsAreAvailable() {
+        let paths = ScreenShotObserver.defaultSearchDirectoryPaths(
+            screenshotLocation: nil,
+            desktopDirectoryPath: nil
+        )
+
+        XCTAssertTrue(paths.isEmpty)
     }
 
 }

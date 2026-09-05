@@ -23,13 +23,14 @@ public final class ScreenShotObserver: NSObject {
     public weak var delegate: ScreenShotObserverDelegate?
     public var isEnabled = true
 
-    private static let desktopDirectoryPath: String? = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true).first
     private let query = NSMetadataQuery()
     private let notificationCenter: NotificationCenter
 
     // MARK: - Initialize
+    /// Observes the configured macOS screenshot save location and the Desktop.
+    /// The save location is read when the observer is initialized.
     public override convenience init() {
-        self.init(searchDirectoryPaths: [ScreenShotObserver.desktopDirectoryPath].compactMap { $0 }, notificationCenter: .default)
+        self.init(searchDirectoryPaths: ScreenShotObserver.defaultSearchDirectoryPaths(), notificationCenter: .default)
     }
 
     public convenience init(searchDirectoryPaths: [String]) {
@@ -56,6 +57,22 @@ public final class ScreenShotObserver: NSObject {
         notificationCenter.removeObserver(self)
         query.stop()
         query.delegate = nil
+    }
+
+    // MARK: - Search Directories
+    static func defaultSearchDirectoryPaths(
+        screenshotLocation: String? = CFPreferencesCopyAppValue("location" as CFString, "com.apple.screencapture" as CFString) as? String,
+        desktopDirectoryPath: String? = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true).first
+    ) -> [String] {
+        var paths = [String]()
+        if let location = screenshotLocation, !location.isEmpty {
+            paths.append((location as NSString).expandingTildeInPath)
+        }
+        if let desktop = desktopDirectoryPath {
+            paths.append(desktop)
+        }
+        var seen = Set<String>()
+        return paths.filter { seen.insert($0).inserted }
     }
 
     // MARK: - Start
