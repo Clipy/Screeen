@@ -33,15 +33,19 @@ observer.isEnabled = true  // Restart observing
 ```
 
 ## Security features of macOS 10.15 or higher
-Security features have been enhanced since mac10.15 Catalina, and screenshot monitoring must be granted permission. The monitoring target can be specified for each directory, and the desktop directory is specified by default.　
+Security features have been enhanced since mac10.15 Catalina, and screenshot monitoring must be granted permission. The monitoring target can be specified for each directory. By default, Screeen monitors the user's custom macOS screenshot save location (`com.apple.screencapture` → `location`) as well as the Desktop. If no custom location is configured, it monitors the Desktop only.
 
 When call `start()` for the first time, a permission alert will be displayed and monitoring will start when allow it.
 
-### Desktop directory monitoring (default)
+### Screenshot save location and Desktop monitoring (default)
 ```
 let observer = ScreenShotObserver()
 observer.start()
 ```
+
+The screenshot save location is read when the observer is initialized. Create a new observer to pick up a changed location. Paths beginning with `~` are expanded, and duplicate directories are monitored only once.
+
+Passing `searchDirectoryPaths` explicitly overrides these defaults; the custom screenshot save location and Desktop are not added to the supplied paths.
 
 ### Desktop and Picture directories monitoring
 ```
